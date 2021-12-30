@@ -5,9 +5,10 @@ from wsgiref.simple_server import make_server
 from gentian_framework.gentian import GentianApplication
 from urls import URLS
 from middlewares import MIDDLEWARES
+import settings as settings
 
 
-application = GentianApplication(URLS, MIDDLEWARES)
+application = GentianApplication(URLS, MIDDLEWARES, settings)
 
 with make_server('', 8080, application) as dev_server:
     print("Приложение запущено на порту 8080...")

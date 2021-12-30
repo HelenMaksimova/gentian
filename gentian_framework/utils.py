@@ -1,6 +1,9 @@
 """Модуль утилит"""
 
 from quopri import decodestring
+from os import path
+
+from gentian_framework.source.content_types import CONTENT_TYPES_MAP
 
 
 def parse_input_data(data: str) -> dict:
@@ -21,6 +24,22 @@ def decode_value(data: dict) -> dict:
         val_decode_str = decodestring(val).decode('UTF-8')
         new_data[k] = val_decode_str
     return new_data
+
+
+def get_content_type(file_path: str, content_types_map: dict = CONTENT_TYPES_MAP) -> str:
+    """Функция возвращает тип контента в зависимости от расширения файла"""
+    file_name = path.basename(file_path).lower()
+    extension = path.splitext(file_name)[1]
+    return content_types_map.get(extension, "text/html")
+
+
+def get_static(static_dir: str, file_path: str) -> tuple:
+    """Функция возвращает кортеж из статус-кода в формате строки и контента файла в формате байт"""
+    path_to_file = path.join(static_dir, file_path)
+    with open(path_to_file, 'rb') as f:
+        file_content = f.read()
+    status_code = '200 OK'
+    return status_code, file_content
 
 
 class GetRequests:
