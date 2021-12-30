@@ -2,18 +2,20 @@
 
 from os.path import join
 
-from jinja2 import Template
+from jinja2 import Environment, FileSystemLoader
 
 
-def render(template_name: str, folder: str = 'templates', **kwargs) -> str:
+def render(template_name: str, folder: str = 'templates', static_url: str = '/static/', **kwargs) -> str:
     """
     Функция, отрисовывающая шаблон с параметрами
+    :param static_url: путь к папке статики
     :param template_name: имя шаблона
     :param folder: папка в которой ищем шаблон
     :param kwargs: параметры
     :return: шаблон в строковом представлении
     """
-    file_path = join(folder, template_name)
-    with open(file_path, encoding='utf-8') as f:
-        template = Template(f.read())
+    env = Environment()
+    env.loader = FileSystemLoader(folder)
+    env.globals['static'] = static_url
+    template = env.get_template(template_name)
     return template.render(**kwargs)

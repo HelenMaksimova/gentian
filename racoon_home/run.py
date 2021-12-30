@@ -11,4 +11,8 @@ application = GentianApplication(URLS, MIDDLEWARES)
 
 with make_server('', 8080, application) as dev_server:
     print("Приложение запущено на порту 8080...")
-    dev_server.serve_forever()
+    try:
+        dev_server.serve_forever()
+    except KeyboardInterrupt:
+        print("Приложение остановлено")
+        exit(0)

@@ -477,14 +477,14 @@
             <p>racoonhome@example.com</p>
             <h1>Оставьте нам сообщение:</h1>
             <div class="form_settings">
-                <p>
-                <p><span>Имя</span><input class="contact" type="text" name="your_name" value=""/></p>
-                <p><span>Email</span><input class="contact" type="text" name="your_email" value=""/></p>
-                <p><span>Сообщение</span><textarea class="contact textarea" rows="8" cols="50"
-                                                   name="your_enquiry"></textarea></p>
-                <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit"
-                                                                       name="contact_submitted" value="submit"/></p>
-                </p>
+                <form action="" method="post">
+                    <p><span>Имя</span><input class="contact" type="text" name="name" value=""/></p>
+                    <p><span>Email</span><input class="contact" type="text" name="email" value=""/></p>
+                    <p><span>Тема</span><input class="contact" type="text" name="theme" value=""/></p>
+                    <p><span>Сообщение</span><textarea class="contact textarea" rows="8" cols="50"
+                                                       name="message"></textarea></p>
+                    <p><button class="submit" type="submit">Отправить</button></p>
+                </form>
             </div>
 
 
