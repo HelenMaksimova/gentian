@@ -43,6 +43,10 @@ class GentianApplication:
         if not path.endswith('/'):
             path = f'{path}/'
 
+        if method in self.REQUEST_PROCESSORS:
+            request['method'] = method
+            self.REQUEST_PROCESSORS[method](environ, request)
+
         if path in self.routes:
             view = self.routes[path]
             content_type = get_content_type(path)
@@ -59,10 +63,6 @@ class GentianApplication:
             content_type = get_content_type(path)
             status_code, body = view(request)
             body = body.encode('utf-8')
-
-        if method in self.REQUEST_PROCESSORS:
-            request['method'] = method
-            self.REQUEST_PROCESSORS[method](environ, request)
 
         start_response(status_code, [('Content-Type', content_type)])
 

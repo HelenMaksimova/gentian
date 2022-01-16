@@ -1,0 +1,8 @@
+<h1>Категории:</h1>
+<ul id="categories">
+    <li class="selected"><a href="/catalog/">ВСЕ ПИТОМЦЫ</a></li>
+    {% for category in categories %}
+    <li><a href="/catalog/?id={{ category.id }}">{{ category.name }}</a></li>
+    {% endfor %}
+    <li><a href="/create_category/">НОВАЯ КАТЕГОРИЯ</a></li>
+</ul>

@@ -85,11 +85,9 @@ class RequestProcessors:
         """Метод-обработчик GET-запроса"""
         request_params = GetRequests().get_request_params(environ)
         request['request_params'] = decode_value(request_params)
-        print(f'Нам пришли GET-параметры: {request["request_params"]}')
 
     @staticmethod
     def post_method_process(environ: dict, request: dict):
         """Метод-обработчик POST-запроса"""
         data = PostRequests().get_request_params(environ)
         request['data'] = decode_value(data)
-        print(f'Нам пришёл post-запрос: {request["data"]}')

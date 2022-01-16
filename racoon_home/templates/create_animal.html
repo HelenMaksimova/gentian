@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+<div id="menubar">
+    <ul id="menu">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+        <li class="selected"><a href="/catalog/">Каталог</a></li>
+        <li><a href="/about/">О нас</a></li>
+    </ul>
+</div>
+{% endblock %}
+{% block content %}
+<div id="content" style="display:flex; gap: 20px;">
+    <div>
+        {% include 'categories_inc.html' %}
+    </div>
+    <div class="form_settings">
+        <h2>ДОБАВИТЬ ПИТОМЦА</h2>
+        <form action="" method="post">
+            <p>
+                <span>Вид животного:</span>
+                <select class="contact" name="type_cls">
+                    {% for animal in animal_types %}
+                        <option value="{{ animal }}">{{ animal }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p><span>Категория: </span><input class="contact" type="text" name="category_name" value="{{ category.name }}" disabled/></p>
+            <p><span>Имя:</span><input class="contact" type="text" name="name" value=""/></p>
+            <p><span>Возраст:</span><input class="contact" type="text" name="age" value=""/></p>
+            <p><span>Описание:</span><input class="contact" type="text" name="description" value=""/></p>
+            <input class="contact" type="text" name="category" value="{{ category.id }}" hidden/></p>
+            <button class="submit" type="submit">Добавить</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

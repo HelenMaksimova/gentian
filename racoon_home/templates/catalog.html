@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
 
 {% block menu %}
-    <div id="menubar">
-        <ul id="menu">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/contacts/">Контакты</a></li>
-            <li class="selected"><a href="/catalog/">Каталог</a></li>
-            <li><a href="/about/">О нас</a></li>
-        </ul>
-    </div>
+<div id="menubar">
+    <ul id="menu">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+        <li class="selected"><a href="/catalog/">Каталог</a></li>
+        <li><a href="/about/">О нас</a></li>
+    </ul>
+</div>
 {% endblock %}
 {% block content %}
-    <div id="content">
+<div id="content" style="display:flex; gap: 20px;">
+    <div>
+        {% include 'categories_inc.html' %}
+    </div>
+    <div>
         <h1>НАШИ ПИТОМЦЫ</h1>
-        {% for racoon in racoons %}
-            <h2>{{ racoon }}</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed tortor nisi. Morbi mattis nulla felis,
-                ac maximus lacus dictum sit amet. Duis ex dolor, lacinia et pulvinar vitae, tempus sit amet enim. Nulla
-                condimentum efficitur lacinia. Sed semper pretium egestas. Donec iaculis porta magna porttitor
-                pellentesque. Suspendisse gravida ex arcu, et ornare orci maximus mattis. Phasellus scelerisque, nisi
-                non gravida pulvinar, massa nulla viverra urna, sit amet faucibus felis metus eget nunc. Integer rhoncus
-                aliquet turpis ultricies porttitor.
-            </p>
-        {% endfor %}
+        <h2>{{ category_name }} ({{ count }})</h2>
+        {% if count == 0 %}
+            <h2>Увы, здесь пока никого нет >_<</h2>
+        {% else %}
+            <hr>
+            {% for animal in objects_list %}
+                <h2>{{ animal.name }}</h2>
+                <p>Возраст, лет: {{ animal.age }}</p>
+                <p>{{ animal.description }}</p>
+                <a href="/copy_animal/?name={{ animal.name }}">Добавить копию питомца</a>
+                <hr>
+            {% endfor %}
+        {% endif %}
+        {% if category_name != 'Все питомцы' %}
+            <a href="/create_animal/?id={{ category.id }}" style="padding-top: 10px; display: block;">Добавить питомца</a>
+        {% endif %}
+
 
     </div>
+</div>
 {% endblock %}

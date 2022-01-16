@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+<div id="menubar">
+    <ul id="menu">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+        <li class="selected"><a href="/catalog/">Каталог</a></li>
+        <li><a href="/about/">О нас</a></li>
+    </ul>
+</div>
+{% endblock %}
+{% block content %}
+<div id="content" style="display:flex; gap: 20px;">
+    <div>
+        {% include 'categories_inc.html' %}
+    </div>
+    <div class="form_settings">
+        <h2>ДОБАВИТЬ КАТЕГОРИЮ</h2>
+        <form action="" method="post">
+            <p><span>Название</span><input class="contact" type="text" name="name" value=""/></p>
+            <p>
+                <span>Входит в категорию:</span>
+                <select class="contact" name="category_id">
+                    <option value="">нет</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <button class="submit" type="submit">Добавить</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
