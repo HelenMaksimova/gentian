@@ -3,7 +3,7 @@
 from wsgiref.simple_server import make_server
 
 from gentian_framework.gentian import GentianApplication
-from urls import URLS
+from views import URLS
 from middlewares import MIDDLEWARES
 import settings as settings
 

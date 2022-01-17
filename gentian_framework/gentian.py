@@ -67,3 +67,25 @@ class GentianApplication:
         start_response(status_code, [('Content-Type', content_type)])
 
         return [body]
+
+
+class DebugGentianApplication(GentianApplication):
+
+    def __init__(self, routes: dict, middlewares: List[Callable], settings):
+        self.application = GentianApplication(routes, middlewares, settings)
+        super().__init__(routes, middlewares, settings)
+
+    def __call__(self, env, start_response):
+        print(f'DEBUG MODE: environ={env}')
+        return self.application(env, start_response)
+
+
+class FakeGentianApplication(GentianApplication):
+
+    def __init__(self, routes: dict, middlewares: List[Callable], settings):
+        self.application = GentianApplication(routes, middlewares, settings)
+        super().__init__(routes, middlewares, settings)
+
+    def __call__(self, env, start_response):
+        start_response('200 OK', [('Content-Type', 'text/html')])
+        return [b'Hello from GentianFake']

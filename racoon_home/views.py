@@ -10,13 +10,19 @@ import datetime
 
 from gentian_framework.templator import render
 from patterns.creational_patterns import Engine, Logger
+from patterns.structural_patterns import route, debug, AppRoute, Debug
 
 site = Engine()
 LOG = Logger('views_log')
 
+URLS = {}
 
+
+@route(URLS, '/')
 class IndexView:
     """Класс представления для главной страницы"""
+
+    @debug
     def __call__(self, request):
         context = {
             'date': request.get('date'),
@@ -27,8 +33,11 @@ class IndexView:
         return '200 OK', render('index.html', **context)
 
 
+@route(URLS, '/about/')
 class AboutView:
     """Класс представления для страницы О нас"""
+
+    @debug
     def __call__(self, request):
         context = {
             'date': request.get('date'),
@@ -39,8 +48,11 @@ class AboutView:
         return '200 OK', render('about.html', **context)
 
 
+@route(URLS, '/contacts/')
 class ContactsView:
     """Класс представления для страницы контактов"""
+
+    @debug
     def __call__(self, request):
         context = {
             'date': request.get('date'),
@@ -51,8 +63,11 @@ class ContactsView:
         return '200 OK', render('contacts.html', **context)
 
 
+@AppRoute(URLS, '/catalog/')
 class CatalogView:
     """Класс представления для страницы каталога"""
+
+    @Debug()
     def __call__(self, request):
         try:
             category = site.find_category_by_id(int(request['request_params']['id']))
@@ -75,8 +90,11 @@ class CatalogView:
         return '200 OK', render('catalog.html', **context)
 
 
+@AppRoute(URLS, '/create_category')
 class CreateCategoryView:
     """Класс представления для страницы создания новой категории"""
+
+    @Debug()
     def __call__(self, request):
         if request['method'] == 'POST':
             data = request['data']
@@ -95,8 +113,11 @@ class CreateCategoryView:
         return '200 OK', render('create_category.html', **context)
 
 
+@AppRoute(URLS, '/create_animal/')
 class CreateAnimalView:
     """Класс представления для страницы создания новой карточки питомца"""
+
+    @Debug()
     def __call__(self, request):
         context = {
             'categories': site.categories,
@@ -129,8 +150,11 @@ class CreateAnimalView:
             return '200 OK', render('create_animal.html', **context)
 
 
+@AppRoute(URLS, '/copy_animal/')
 class CopyAnimalView:
     """Класс представления для страницы копирования карточки питомца"""
+
+    @Debug()
     def __call__(self, request):
         name = request['request_params'].get('name')
         animal = site.get_animal(name)
