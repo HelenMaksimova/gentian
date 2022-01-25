@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <div id="menubar">
+        <ul id="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+            <li><a href="/catalog/">Каталог</a></li>
+            <li><a href="/about/">О нас</a></li>
+            <li class="selected"><a href="/customers/">Наши покупатели</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content" style="display:flex; gap: 20px;">
+        <div class="form_settings">
+            <h2>ВЫБРАТЬ ПОЛЬЗОВАТЕЛЯ</h2>
+            <form action="" method="post">
+                <p>
+                <select class="contact" name="user_id">
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.fullname }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+                <button class="submit" type="submit">Зайти</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

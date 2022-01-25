@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <div id="menubar">
+        <ul id="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+            <li><a href="/catalog/">Каталог</a></li>
+            <li><a href="/about/">О нас</a></li>
+            <li class="selected"><a href="/customers/">Наши покупатели</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content" style="display:flex; gap: 20px;">
+        <div class="form_settings">
+            <h2>ДОБАВИТЬ ПОКУПАТЕЛЯ</h2>
+            <form action="" method="post">
+                <p><span>Имя:</span><input class="contact" type="text" name="first_name" value=""/></p>
+                <p><span>Фамилия:</span><input class="contact" type="text" name="last_name" value=""/></p>
+                <button class="submit" type="submit">Добавить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
