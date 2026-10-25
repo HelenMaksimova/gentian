@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <div id="menubar">
+        <ul id="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+            <li><a href="/catalog/">Каталог</a></li>
+            <li class="selected"><a href="/about/">О нас</a></li>
+            <li><a href="/customers/">Наши покупатели</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <h1>О НАС</h1>
+        <h2>История питомника</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed tortor nisi. Morbi mattis nulla felis,
+            ac maximus lacus dictum sit amet. Duis ex dolor, lacinia et pulvinar vitae, tempus sit amet enim. Nulla
+            condimentum efficitur lacinia. Sed semper pretium egestas. Donec iaculis porta magna porttitor
+            pellentesque. Suspendisse gravida ex arcu, et ornare orci maximus mattis. Phasellus scelerisque, nisi
+            non gravida pulvinar, massa nulla viverra urna, sit amet faucibus felis metus eget nunc. Integer rhoncus
+            aliquet turpis ultricies porttitor. Etiam aliquam pulvinar urna vitae viverra. Nulla tristique
+            scelerisque metus quis sagittis. Donec at dolor auctor, lacinia dui non, malesuada massa. Suspendisse
+            maximus, purus in venenatis iaculis, sem velit vestibulum diam, eu tincidunt sapien orci ut mauris.
+            Integer lobortis risus vel fringilla cursus.
+        </p>
+        <h2>Наши планы на будущее</h2>
+        <p>Pellentesque posuere pretium dui, ac cursus quam auctor in. Nulla ligula ante, eleifend eget turpis
+            quis, ornare suscipit dui. Etiam porttitor dui sed enim malesuada, id tincidunt odio mollis. Aenean
+            euismod auctor orci. Praesent vehicula purus id convallis auctor. Ut ac arcu porttitor mauris venenatis
+            consectetur. Ut rhoncus laoreet velit eget dignissim. Nullam id est rhoncus, tristique quam id,
+            convallis libero.
+        </p>
+        <h2>Наши спонсоры</h2>
+        <ul>
+            <li>ООО Енот и компания</li>
+            <li>АО Лесные белочки</li>
+            <li>Саша Енотов</li>
+        </ul>
+
+    </div>
+{% endblock %}

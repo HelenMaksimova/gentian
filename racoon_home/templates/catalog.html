@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+<div id="menubar">
+    <ul id="menu">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+        <li class="selected"><a href="/catalog/">Каталог</a></li>
+        <li><a href="/about/">О нас</a></li>
+        <li><a href="/customers/">Наши покупатели</a></li>
+    </ul>
+</div>
+{% endblock %}
+{% block content %}
+<div id="content" style="display:flex; gap: 20px;">
+    <div>
+        {% include 'categories_inc.html' %}
+    </div>
+    <div>
+        <h1>НАШИ ПИТОМЦЫ</h1>
+        <h2>{{ category_name }} ({{ count }})</h2>
+        {% if count == 0 %}
+            <h2>Увы, здесь пока никого нет >_<</h2>
+        {% else %}
+            <hr>
+            {% for animal in objects_list %}
+                <h2>{{ animal.name }}</h2>
+                <p>Возраст, лет: {{ animal.age }}</p>
+                <p>{{ animal.description }}</p>
+                <a href="/copy_animal/?name={{ animal.name }}">Добавить копию питомца</a>
+                {% if user %}
+                    <a href="/order_animal/?name={{ animal.name }}">Сделать заказ</a>
+                {% endif %}
+                <hr>
+            {% endfor %}
+        {% endif %}
+        {% if category_name != 'Все питомцы' %}
+            <a href="/create_animal/?id={{ category.id }}" style="padding-top: 10px; display: block;">Добавить питомца</a>
+        {% endif %}
+
+
+    </div>
+</div>
+{% endblock %}

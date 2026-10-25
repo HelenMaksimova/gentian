@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <div id="menubar">
+        <ul id="menu">
+            <li><a href="/">Главная</a></li>
+            <li class="selected"><a href="/contacts/">Контакты</a></li>
+            <li><a href="/catalog/">Каталог</a></li>
+            <li><a href="/about/">О нас</a></li>
+            <li><a href="/customers/">Наши покупатели</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <h1>НАШИ КОНТАКТЫ</h1>
+        <h2>Мы находимся по адресу:</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed tortor nisi.</p>
+        <h2>Наш телефон:</h2>
+        <p>(999) 000-00-00</p>
+        <h2>Наш e-mail:</h2>
+        <p>racoonhome@example.com</p>
+        <h1>Оставьте нам сообщение:</h1>
+        <div class="form_settings">
+            <form action="" method="post">
+                <p><span>Имя</span><input class="contact" type="text" name="name" value=""/></p>
+                <p><span>Email</span><input class="contact" type="text" name="email" value=""/></p>
+                <p><span>Тема</span><input class="contact" type="text" name="theme" value=""/></p>
+                <p><span>Сообщение</span><textarea class="contact textarea" rows="8" cols="50"
+                                                   name="message"></textarea></p>
+                <p><button class="submit" type="submit">Отправить</button></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

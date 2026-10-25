@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <div id="menubar">
+        <ul id="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+            <li><a href="/catalog/">Каталог</a></li>
+            <li><a href="/about/">О нас</a></li>
+            <li class="selected"><a href="/customers/">Наши покупатели</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+    <h1>НАШИ ПОКУПАТЕЛИ</h1>
+        <ul>
+            {% for user in objects_list %}
+                <li>{{ user.fullname }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/create_customer/">ДОБАВИТЬ ПОКУПАТЕЛЯ</a>
+    {% if objects_list %}
+        <a href="/login/">ЗАЙТИ ОТ ИМЕНИ ПОКУПАТЕЛЯ</a>
+    {% endif %}
+    </div>
+{% endblock %}
